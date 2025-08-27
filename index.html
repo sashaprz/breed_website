@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accelerating Solid-State Electrolyte Discovery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+@font-face {
+            font-family: 'Namdhinggo';
+            src: url('fonts/Namdhinggo-SemiBold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Namdhinggo-Regular';
+            src: url('fonts/Namdhinggo-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .first-section {
+            background: #000;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .first-section {
+            background-image: url('background.avif');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .first-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 2;
+            width: 100%;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .main-title {
+            font-family: 'Namdhinggo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 50px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 60px;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .find-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #7cb342 0%, #8bc34a 100%);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 179, 66, 0.3);
+            margin-bottom: 40px;
+        }
+
+        .find-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 179, 66, 0.4);
+        }
+
+        .profile-icon {
+            position: absolute;
+            bottom: 60px;
+            right: 60px;
+            width: 60px;
+            height: 60px;
+            background: rgba(100, 120, 150, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            z-index: 2;
+        }
+
+        /* Second Section Styles */
+        .second-section {
+            min-height: 100vh;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            padding: 80px 0px 0px 0px;
+        }
+
+        .content-grid {
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            display: flex;
+            align-items: end;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .content-wrapper {
+            display: flex;
+            align-items: end;
+            gap: 10px;
+            width: fit-content;
+            max-width: 1100px;
+        }
+
+        .text-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            height: 348px;
+            width: auto;
+        }
+
+        .image-content {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .github-button {
+            margin-top: auto;
+            align-self: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-family: 'Namdhinggo-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 50px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .highlight {
+            font-family: 'Namdhinggo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 600;
+        }
+
+        .github-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #7cb342 0%, #8bc34a 100%);
+            color: white;
+            padding: 16px 32px;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 179, 66, 0.3);
+        }
+
+        .github-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 179, 66, 0.4);
+        }
+
+        .molecule-image {
+            width: 413px;
+            height: 348px;
+            border-radius: 12px;
+            object-fit: cover;
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 40px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            .profile-icon {
+                bottom: 30px;
+                right: 30px;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .text-content {
+                padding-right: 0;
+            }
+
+            .section-title {
+                font-size: 40px;
+            }
+
+            .second-section {
+                padding: 40px 20px;
+            }
+        }
+
+        /* Third Section Styles */
+        .third-section {
+            min-height: 100vh;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0px 40px 80px 40px;
+            text-align: center;
+        }
+
+        .third-title {
+            font-family: 'Namdhinggo-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 60px;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.45;
+            margin-top: -60px;
+            text-align: center;
+            position: relative;
+            left: -15px;
+        }
+
+        .third-subtitle {
+            font-family: 'Namdhinggo-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 60px;
+            font-weight: 400;
+            color: #4F7A2C;
+            margin-bottom: 150px;
+            line-height: 1.45;
+            text-align: center;
+            position: relative;
+            left: -15px;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            background: #666;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 300;
+            margin: 0 auto 300px auto;
+        }
+
+        .cycle-text {
+            font-family: 'Namdhinggo-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 20px;
+            position: relative;
+            left: -10px;
+        }
+
+        .time-comparison {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            position: relative;
+            left: 30px;
+        }
+
+        .time-from {
+            font-family: 'Namdhinggo-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 160px;
+            font-weight: 400;
+            color: #4F7A2C;
+            opacity: 0.4;
+        }
+
+        .arrow {
+            font-size: 120px;
+            color: #4F7A2C;
+        }
+
+        .time-to {
+            font-family: 'Namdhinggo-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 160px;
+            font-weight: 400;
+            color: #4F7A2C;
+            opacity: 1;
+        }
+
+        .third-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #7cb342 0%, #8bc34a 100%);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 179, 66, 0.3);
+            margin-top: 45px;
+            position: relative;
+            left: -15px;
+        }
+
+        .third-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 179, 66, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .third-title,
+            .third-subtitle {
+                font-size: 40px;
+            }
+
+            .time-from,
+            .time-to {
+                font-size: 50px;
+            }
+
+            .arrow {
+                font-size: 40px;
+            }
+
+            .time-comparison {
+                gap: 20px;
+            }
+
+            .video-placeholder {
+                height: 200px;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Fourth Section Styles */
+        .fourth-section {
+            min-height: 70vh;
+            background: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 40px;
+            margin-top: 260px;
+            text-align: center;
+        }
+
+        .fourth-title {
+            font-family: 'Namdhinggo-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 60px;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 80px;
+            line-height: 1.45;
+        }
+
+        .cards-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            max-width: 1000px;
+        }
+
+        .card {
+            width: 280px;
+            height: 280px;
+            border-radius: 20px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Namdhinggo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 40px;
+            font-weight: 600;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 20px;
+            z-index: 1;
+        }
+
+        .card span {
+            position: relative;
+            z-index: 2;
+        }
+
+        .card.cycle-life {
+            background-image: url('cycle-life-battery.png');
+            background-position: center 5px;
+        }
+
+        .card.energy-density {
+            background-image: url('battery1.avif');
+        }
+
+        .card.safety {
+            background-image: url('safety-battery.avif');
+        }
+
+        /* Fifth Section Styles */
+        .fifth-section {
+            min-height: 100vh;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 180px 40px 80px 40px;
+            text-align: center;
+        }
+
+        .fifth-title {
+            font-family: 'Namdhinggo-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 60px;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 30px;
+            line-height: 1.45;
+        }
+
+        .email-text {
+            font-family: 'Namdhinggo-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            color: #333;
+            margin-bottom: 15px;
+            line-height: 1.35;
+        }
+
+        .email-link {
+            font-family: 'Namdhinggo-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            color: #4F7A2C;
+            text-decoration: none;
+            margin-bottom: 50px;
+            display: inline-block;
+            line-height: 1.35;
+        }
+
+        .email-link:hover {
+            text-decoration: underline;
+        }
+
+        .github-button-final {
+            display: inline-block;
+            background: linear-gradient(135deg, #7cb342 0%, #8bc34a 100%);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 179, 66, 0.3);
+        }
+
+        .github-button-final:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 179, 66, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .fourth-title,
+            .fifth-title {
+                font-size: 40px;
+            }
+
+            .cards-container {
+                gap: 20px;
+            }
+
+            .card {
+                width: 250px;
+                height: 250px;
+                font-size: 30px;
+            }
+
+            .fourth-section,
+            .fifth-section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- First Section -->
+    <section class="first-section">
+        <div class="container">
+            <h1 class="main-title">Accelerating solid-state electrolyte discovery</h1>
+            <button class="find-button">Find electrolytes</button>
+        </div>
+    </section>
+
+    <!-- Second Section -->
+    <section class="second-section">
+        <div class="content-grid">
+            <div class="content-wrapper">
+                <div class="text-content">
+                    <h2 class="section-title">
+                        A genetic algorithm to screen inorganic SSE candidates<br>
+                        <span class="highlight">12X faster.</span>
+                    </h2>
+                    <button class="github-button">See the GitHub</button>
+                </div>
+                <div class="image-content">
+                    <img src="molecule-structure.png" alt="Molecular structure diagram" class="molecule-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Third Section -->
+    <section class="third-section">
+        <h2 class="third-title">Screen millions of candidates.</h2>
+        <h3 class="third-subtitle">Synthesize only the best.</h3>
+        
+        <div class="video-placeholder">
+            VIDEO
+        </div>
+        
+        <p class="cycle-text">Take the initial development cycle from</p>
+        
+        <div class="time-comparison">
+            <span class="time-from">2 years</span>
+            <span class="arrow">→</span>
+            <span class="time-to">2 months</span>
+        </div>
+        
+        <button class="third-button">Find electrolytes</button>
+    </section>
+
+    <!-- Fourth Section -->
+    <section class="fourth-section">
+        <h2 class="fourth-title">Better electrolytes can improve</h2>
+        <div class="cards-container">
+            <div class="card cycle-life">
+                <span>Cycle Life</span>
+            </div>
+            <div class="card energy-density">
+                <span>Energy Density</span>
+            </div>
+            <div class="card safety">
+                <span>Safety</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fifth Section -->
+    <section class="fifth-section">
+        <h2 class="fifth-title">All code is open-source.</h2>
+        <p class="email-text">Email me with suggestions and feedback at</p>
+        <a href="mailto:sasha.przybylski@mail.utoronto.ca" class="email-link">sasha.przybylski@mail.utoronto.ca</a>
+        <button class="github-button-final">See the GitHub</button>
+    </section>
+</body>
+</html>
