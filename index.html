@@ -483,6 +483,197 @@
             background-image: url('safety-battery.avif');
         }
 
+        /* Scroll-jacking animation styles */
+        .fourth-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card.cycle-life {
+            transition: none;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Cycle life slide overlay */
+        .expanding-card {
+            position: fixed;
+            top: 0;
+            left: 100%;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('cycle-life-battery.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: none;
+            pointer-events: none;
+        }
+
+        .expanding-card.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .expanding-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .expanding-card-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            padding: 80px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .expanding-text-container {
+            max-width: 800px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .expanding-card-title {
+            font-family: 'Namdhinggo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 60px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            color: white;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: none;
+        }
+
+        .expanding-card-text {
+            font-family: 'Namdhinggo-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 30px;
+            font-weight: 400;
+            line-height: 1.4;
+            color: white;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: none;
+        }
+
+        /* Energy Density Slide */
+        .energy-density-slide {
+            position: fixed;
+            top: 0;
+            left: 100%;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('battery1.avif');
+            background-size: cover;
+            background-position: center;
+            z-index: 1001;
+            opacity: 0;
+            transition: none;
+        }
+
+        .energy-density-slide.active {
+            opacity: 1;
+        }
+
+        .energy-density-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            padding: 80px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .slide-text-container {
+            max-width: 800px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .slide-title {
+            font-family: 'Namdhinggo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 60px;
+            font-weight: 900;
+            margin-bottom: 30px;
+            color: white;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .slide-text {
+            font-family: 'Namdhinggo-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 30px;
+            font-weight: 400;
+            line-height: 1.4;
+            color: white;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        /* Safety Slide */
+        .safety-slide {
+            position: fixed;
+            top: 0;
+            left: 100%;
+            width: 100vw;
+            height: 100vh;
+            background-image: url('safety-battery.avif');
+            background-size: cover;
+            background-position: center;
+            z-index: 1002;
+            opacity: 0;
+            transition: none;
+        }
+
+        .safety-slide.active {
+            opacity: 1;
+        }
+
+        .safety-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        /* Hide scroll during animation */
+        body.scroll-locked {
+            overflow: hidden;
+        }
+
         /* Fifth Section Styles */
         .fifth-section {
             min-height: 100vh;
@@ -593,7 +784,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.6);
             z-index: 1;
             pointer-events: none;
         }
@@ -659,6 +850,7 @@
             justify-content: center;
             align-items: center;
             gap: 40px;
+            transform: translateX(-5px);
         }
 
         .footer-links {
@@ -765,10 +957,10 @@
     </section>
 
     <!-- Fourth Section -->
-    <section class="fourth-section">
+    <section class="fourth-section" id="fourth-section">
         <h2 class="fourth-title">Better electrolytes can improve</h2>
         <div class="cards-container">
-            <div class="card cycle-life">
+            <div class="card cycle-life" id="cycle-life-card">
                 <span>Cycle Life</span>
             </div>
             <div class="card energy-density">
@@ -779,6 +971,36 @@
             </div>
         </div>
     </section>
+
+    <!-- Expanding Card Overlay -->
+    <div class="expanding-card" id="expanding-card">
+        <div class="expanding-card-content">
+            <div class="expanding-text-container">
+                <h2 class="expanding-card-title">Cycle Life</h2>
+                <p class="expanding-card-text">If the electrolyte does not form a stable SEI, it will react with the anode/cathode and consume active lithium, causing capacity fade. Electrolyte degradation products can also accumulate on the anode/cathode surface, increasing internal impedance and accelerating capacity fade.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Energy Density Slide -->
+    <div class="energy-density-slide" id="energy-density-slide">
+        <div class="slide-content">
+            <div class="slide-text-container">
+                <h2 class="slide-title">Energy Density</h2>
+                <p class="slide-text">Energy is determined by Voltage * capacity / mass. Using anode and cathode materials with a higher electrochemical potential difference could increase battery voltage. However, current electrolytes become unstable and degrade at higher voltages, limiting the maximum voltage and thus the battery's energy density.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Safety Slide -->
+    <div class="safety-slide" id="safety-slide">
+        <div class="slide-content">
+            <div class="slide-text-container">
+                <h2 class="slide-title">Safety</h2>
+                <p class="slide-text">Current electrolytes are flammable, so battery overheating can trigger a self-sustaining fire (thermal runaway). Electrolyte degradation produces flammable, toxic gases that increase the internal pressure of the cell, increasing the risk of explosion.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Fifth Section -->
     <section class="fifth-section">
@@ -813,5 +1035,408 @@
             </div>
         </div>
     </section>
+
+    <script>
+        let isAnimating = false;
+        let progress = 0;
+        let scrollProgress = 0;
+        let currentPhase = 'cycle'; // 'cycle', 'energy', 'safety', 'complete'
+        let hasCompletedAnimation = false;
+        
+        function initScrollAnimation() {
+            console.log('Initializing scroll animation');
+            
+            const fourthSection = document.getElementById('fourth-section');
+            const expandingCard = document.getElementById('expanding-card');
+            const textContainer = expandingCard.querySelector('.expanding-text-container');
+            const titleElement = expandingCard.querySelector('.expanding-card-title');
+            const textElement = expandingCard.querySelector('.expanding-card-text');
+            const body = document.body;
+            
+            if (!fourthSection || !expandingCard) {
+                console.error('Required elements not found');
+                return;
+            }
+            
+            // Set initial state
+            expandingCard.style.left = '100%';
+            expandingCard.style.opacity = '0';
+            textContainer.style.opacity = '0';
+            textContainer.style.transform = 'translateY(50px)';
+            titleElement.style.opacity = '0';
+            titleElement.style.transform = 'translateY(30px)';
+            textElement.style.opacity = '0';
+            textElement.style.transform = 'translateY(30px)';
+            
+            // Set initial state for slides
+            const energySlide = document.getElementById('energy-density-slide');
+            energySlide.style.left = '100%';
+            energySlide.style.opacity = '0';
+            
+            const safetySlide = document.getElementById('safety-slide');
+            safetySlide.style.left = '100%';
+            safetySlide.style.opacity = '0';
+            
+            // Check scroll position
+            function checkScroll() {
+                const rect = fourthSection.getBoundingClientRect();
+                
+                // Reset completion flag when scrolling away from fourth section (going up)
+                if (hasCompletedAnimation && rect.top > 100) {
+                    console.log('Scrolled away from fourth section - resetting animation availability');
+                    hasCompletedAnimation = false;
+                }
+                
+                // Only start animation if we haven't completed it yet
+                if (rect.top <= 50 && rect.top >= -50 && !isAnimating && !hasCompletedAnimation) {
+                    console.log('Starting animation!');
+                    startAnimation();
+                } else if (isAnimating && rect.top > 200) {
+                    console.log('Exiting animation area');
+                    exitAnimation();
+                }
+            }
+            
+            // Handle wheel input during animation
+            function handleWheel(e) {
+                if (!isAnimating) return;
+                
+                e.preventDefault();
+                
+                // Accumulate scroll input (very slow for extended control)
+                scrollProgress += e.deltaY * 0.0004;
+                scrollProgress = Math.max(0, Math.min(1, scrollProgress));
+                
+                console.log('Scroll progress:', scrollProgress, 'Delta:', e.deltaY);
+                updateAnimation();
+                
+                // Exit animation if scrolling back up
+                if (scrollProgress <= 0) {
+                    console.log('Scrolling back up - exiting animation');
+                    exitAnimation();
+                    return;
+                }
+                
+                // Move to next phase when scroll completes
+                if (scrollProgress >= 1) {
+                    if (currentPhase === 'cycle') {
+                        currentPhase = 'energy';
+                        scrollProgress = 0;
+                        console.log('Moving to Energy Density phase');
+                    } else if (currentPhase === 'energy') {
+                        currentPhase = 'safety';
+                        scrollProgress = 0;
+                        console.log('Moving to Safety phase');
+                    } else if (currentPhase === 'safety') {
+                        currentPhase = 'complete';
+                        scrollProgress = 0;
+                        console.log('Moving to final slide out phase');
+                    } else if (currentPhase === 'complete') {
+                        console.log('Animation complete, transitioning to next section');
+                        completeAllAnimations();
+                    }
+                }
+            }
+            
+            // Start animation mode
+            function startAnimation() {
+                isAnimating = true;
+                body.style.overflow = 'hidden';
+                expandingCard.style.opacity = '1';
+                expandingCard.classList.add('active');
+                scrollProgress = 0;
+                currentPhase = 'cycle';
+                
+                // Add wheel listener
+                window.addEventListener('wheel', handleWheel, { passive: false });
+            }
+            
+            // Update animation based on scroll progress and current phase
+            function updateAnimation() {
+                const energySlide = document.getElementById('energy-density-slide');
+                const safetySlide = document.getElementById('safety-slide');
+                
+                if (currentPhase === 'cycle') {
+                    // Cycle life slide animation - slide in from right
+                    expandingCard.classList.add('active');
+                    expandingCard.style.opacity = '1';
+                    
+                    // Phase 1: Slide in from right (0-50% of scroll)
+                    const slideProgress = Math.min(1, scrollProgress / 0.5);
+                    const leftPosition = 100 - (slideProgress * 100);
+                    expandingCard.style.left = `${leftPosition}%`;
+                    expandingCard.style.transition = 'none';
+                    
+                    // Phase 2: Text animation (30-100% of scroll) - starts while sliding
+                    if (scrollProgress > 0.3) {
+                        const textProgress = (scrollProgress - 0.3) / 0.7;
+                        
+                        // Animate the entire text container as one unit
+                        const containerOpacity = Math.min(1, textProgress * 1.3);
+                        const containerY = 50 * (1 - textProgress);
+                        textContainer.style.opacity = containerOpacity;
+                        textContainer.style.transform = `translateY(${containerY}px)`;
+                        
+                        // Individual text elements fade in after container is positioned
+                        if (textProgress > 0.2) {
+                            const titleOpacity = Math.min(1, (textProgress - 0.2) * 1.8);
+                            titleElement.style.opacity = titleOpacity;
+                            titleElement.style.transform = 'translateY(0px)';
+                            
+                            // Body text appears after title
+                            if (textProgress > 0.4) {
+                                const bodyOpacity = Math.min(1, (textProgress - 0.4) * 1.5);
+                                textElement.style.opacity = bodyOpacity;
+                                textElement.style.transform = 'translateY(0px)';
+                            }
+                        }
+                    } else {
+                        // Reset text when not in text phase
+                        textContainer.style.opacity = '0';
+                        textContainer.style.transform = 'translateY(50px)';
+                        titleElement.style.opacity = '0';
+                        titleElement.style.transform = 'translateY(30px)';
+                        textElement.style.opacity = '0';
+                        textElement.style.transform = 'translateY(30px)';
+                    }
+                } else if (currentPhase === 'energy') {
+                    // Energy density slide animation
+                    energySlide.classList.add('active');
+                    energySlide.style.opacity = '1';
+                    
+                    // Slide in from right based on scroll progress
+                    const slideProgress = Math.min(1, scrollProgress / 0.5);
+                    const leftPosition = 100 - (slideProgress * 100);
+                    energySlide.style.left = `${leftPosition}%`;
+                    energySlide.style.transition = 'none';
+                    
+                    // Fade out expanding card as energy slide comes in
+                    const cardOpacity = Math.max(0, 1 - slideProgress * 2);
+                    expandingCard.style.opacity = cardOpacity;
+                    
+                    // Text animation for energy slide (30-100% of scroll) - starts while sliding
+                    const energyTextContainer = energySlide.querySelector('.slide-content');
+                    const energyTitle = energySlide.querySelector('.slide-title');
+                    const energyText = energySlide.querySelector('.slide-text');
+                    
+                    if (scrollProgress > 0.3) {
+                        const textProgress = (scrollProgress - 0.3) / 0.7;
+                        
+                        // Animate the entire text container
+                        const containerOpacity = Math.min(1, textProgress * 1.3);
+                        const containerY = 50 * (1 - textProgress);
+                        energyTextContainer.style.opacity = containerOpacity;
+                        energyTextContainer.style.transform = `translateY(${containerY}px)`;
+                        
+                        // Individual text elements fade in
+                        if (textProgress > 0.2) {
+                            const titleOpacity = Math.min(1, (textProgress - 0.2) * 1.8);
+                            energyTitle.style.opacity = titleOpacity;
+                            energyTitle.style.transform = 'translateY(0px)';
+                            
+                            // Body text appears after title
+                            if (textProgress > 0.4) {
+                                const bodyOpacity = Math.min(1, (textProgress - 0.4) * 1.5);
+                                energyText.style.opacity = bodyOpacity;
+                                energyText.style.transform = 'translateY(0px)';
+                            }
+                        }
+                    } else {
+                        // Reset text when not in text phase
+                        energyTextContainer.style.opacity = '0';
+                        energyTextContainer.style.transform = 'translateY(50px)';
+                        energyTitle.style.opacity = '0';
+                        energyTitle.style.transform = 'translateY(30px)';
+                        energyText.style.opacity = '0';
+                        energyText.style.transform = 'translateY(30px)';
+                    }
+                } else if (currentPhase === 'safety') {
+                    // Safety slide animation
+                    safetySlide.classList.add('active');
+                    safetySlide.style.opacity = '1';
+                    
+                    // Slide in safety while sliding out energy
+                    const slideProgress = Math.min(1, scrollProgress / 0.5);
+                    const safetyLeft = 100 - (slideProgress * 100);
+                    const energyLeft = -(slideProgress * 100);
+                    
+                    safetySlide.style.left = `${safetyLeft}%`;
+                    energySlide.style.left = `${energyLeft}%`;
+                    safetySlide.style.transition = 'none';
+                    energySlide.style.transition = 'none';
+                    
+                    // Text animation for safety slide (30-100% of scroll) - starts while sliding
+                    const safetyTextContainer = safetySlide.querySelector('.slide-content');
+                    const safetyTitle = safetySlide.querySelector('.slide-title');
+                    const safetyText = safetySlide.querySelector('.slide-text');
+                    
+                    if (scrollProgress > 0.3) {
+                        const textProgress = (scrollProgress - 0.3) / 0.7;
+                        
+                        // Animate the entire text container
+                        const containerOpacity = Math.min(1, textProgress * 1.3);
+                        const containerY = 50 * (1 - textProgress);
+                        safetyTextContainer.style.opacity = containerOpacity;
+                        safetyTextContainer.style.transform = `translateY(${containerY}px)`;
+                        
+                        // Individual text elements fade in
+                        if (textProgress > 0.2) {
+                            const titleOpacity = Math.min(1, (textProgress - 0.2) * 1.8);
+                            safetyTitle.style.opacity = titleOpacity;
+                            safetyTitle.style.transform = 'translateY(0px)';
+                            
+                            // Body text appears after title
+                            if (textProgress > 0.4) {
+                                const bodyOpacity = Math.min(1, (textProgress - 0.4) * 1.5);
+                                safetyText.style.opacity = bodyOpacity;
+                                safetyText.style.transform = 'translateY(0px)';
+                            }
+                        }
+                    } else {
+                        // Reset text when not in text phase
+                        safetyTextContainer.style.opacity = '0';
+                        safetyTextContainer.style.transform = 'translateY(50px)';
+                        safetyTitle.style.opacity = '0';
+                        safetyTitle.style.transform = 'translateY(30px)';
+                        safetyText.style.opacity = '0';
+                        safetyText.style.transform = 'translateY(30px)';
+                    }
+                } else if (currentPhase === 'complete') {
+                    // Final slide out animation
+                    const slideProgress = Math.min(1, scrollProgress / 0.3);
+                    const safetyLeft = -(slideProgress * 100);
+                    safetySlide.style.left = `${safetyLeft}%`;
+                    safetySlide.style.transition = 'none';
+                }
+            }
+            
+            // Complete all animations and transition to next section
+            function completeAllAnimations() {
+                console.log('All animations complete, transitioning to next section');
+                window.removeEventListener('wheel', handleWheel);
+                
+                // Mark animation as completed to prevent re-triggering
+                hasCompletedAnimation = true;
+                
+                // Immediately restore normal scrolling and reset state
+                body.style.overflow = 'auto';
+                isAnimating = false;
+                
+                // Clean up all slides
+                const expandingCard = document.getElementById('expanding-card');
+                const energySlide = document.getElementById('energy-density-slide');
+                const safetySlide = document.getElementById('safety-slide');
+                
+                expandingCard.style.opacity = '0';
+                expandingCard.classList.remove('active');
+                energySlide.style.opacity = '0';
+                energySlide.classList.remove('active');
+                safetySlide.style.opacity = '0';
+                safetySlide.classList.remove('active');
+                
+                // Reset all positions immediately
+                expandingCard.style.left = '100%';
+                expandingCard.style.transition = 'none';
+                energySlide.style.left = '100%';
+                energySlide.style.transition = 'none';
+                safetySlide.style.left = '100%';
+                safetySlide.style.transition = 'none';
+                
+                // Reset variables
+                scrollProgress = 0;
+                currentPhase = 'cycle';
+                
+                // Scroll to the fifth section (open source)
+                const fifthSection = document.querySelector('.fifth-section');
+                if (fifthSection) {
+                    fifthSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            
+            // Exit animation (scroll back up)
+            function exitAnimation() {
+                console.log('Exiting animation immediately');
+                window.removeEventListener('wheel', handleWheel);
+                body.style.overflow = 'auto';
+                isAnimating = false;
+                
+                // Reset the completion flag to allow animation to play again
+                hasCompletedAnimation = false;
+                
+                // Immediate reset without delay
+                expandingCard.style.left = '100%';
+                expandingCard.style.opacity = '0';
+                expandingCard.classList.remove('active');
+                expandingCard.style.transition = 'none';
+                textContainer.style.opacity = '0';
+                textContainer.style.transform = 'translateY(50px)';
+                titleElement.style.opacity = '0';
+                titleElement.style.transform = 'translateY(30px)';
+                textElement.style.opacity = '0';
+                textElement.style.transform = 'translateY(30px)';
+                scrollProgress = 0;
+                currentPhase = 'cycle';
+                
+                // Reset energy density and safety slides
+                const energySlide = document.getElementById('energy-density-slide');
+                energySlide.style.left = '100%';
+                energySlide.style.opacity = '0';
+                energySlide.classList.remove('active');
+                energySlide.style.transition = 'none';
+                
+                const safetySlide = document.getElementById('safety-slide');
+                safetySlide.style.left = '100%';
+                safetySlide.style.opacity = '0';
+                safetySlide.classList.remove('active');
+                safetySlide.style.transition = 'none';
+                
+                // Allow normal scrolling to resume
+                setTimeout(() => {
+                    // Small scroll to help browser resume normal scroll
+                    window.scrollBy(0, -1);
+                }, 50);
+            }
+            
+            // Reset to initial state
+            function resetAnimation() {
+                isAnimating = false;
+                scrollProgress = 0;
+                currentPhase = 'cycle';
+                expandingCard.style.left = '100%';
+                expandingCard.style.opacity = '0';
+                expandingCard.classList.remove('active');
+                expandingCard.style.transition = 'none';
+                textContainer.style.opacity = '0';
+                textContainer.style.transform = 'translateY(50px)';
+                titleElement.style.opacity = '0';
+                titleElement.style.transform = 'translateY(30px)';
+                textElement.style.opacity = '0';
+                textElement.style.transform = 'translateY(30px)';
+                
+                // Reset energy density and safety slides
+                const energySlide = document.getElementById('energy-density-slide');
+                energySlide.style.left = '100%';
+                energySlide.style.opacity = '0';
+                energySlide.classList.remove('active');
+                energySlide.style.transition = 'none';
+                
+                const safetySlide = document.getElementById('safety-slide');
+                safetySlide.style.left = '100%';
+                safetySlide.style.opacity = '0';
+                safetySlide.classList.remove('active');
+                safetySlide.style.transition = 'none';
+            }
+            
+            // Listen for scroll
+            window.addEventListener('scroll', checkScroll);
+            
+            // Initial check
+            checkScroll();
+        }
+        
+        // Start when page loads
+        document.addEventListener('DOMContentLoaded', initScrollAnimation);
+    </script>
 </body>
 </html>
