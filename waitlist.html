@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BREED Waitlist - Join the Beta</title>
+    <style>
+        @font-face {
+            font-family: 'Namdhinggo';
+            src: url('fonts/Namdhinggo-SemiBold.ttf') format('truetype');
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Namdhinggo-Regular';
+            src: url('fonts/Namdhinggo-Regular.ttf') format('truetype');
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .waitlist-container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .back-link {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            color: #4F7A2C;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #7cb342;
+        }
+
+        .breed-title {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 80px;
+            font-weight: normal;
+            color: #333;
+            line-height: 1;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+        }
+
+        .waitlist-title {
+            font-family: 'Namdhinggo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 48px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .waitlist-subtitle {
+            font-family: 'Namdhinggo-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 24px;
+            font-weight: 400;
+            color: #666;
+            margin-bottom: 60px;
+            line-height: 1.4;
+        }
+
+        .email-form {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .email-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px 24px;
+            font-size: 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .email-input:focus {
+            border-color: #7cb342;
+            box-shadow: 0 0 0 3px rgba(124, 179, 66, 0.1);
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #7cb342 0%, #8bc34a 100%);
+            color: white;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.25rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 179, 66, 0.3);
+            font-family: inherit;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 179, 66, 0.4);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .success-message {
+            display: none;
+            background: #e8f5e8;
+            color: #4F7A2C;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 30px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .back-link {
+                top: 20px;
+                left: 20px;
+                font-size: 16px;
+            }
+
+            .breed-title {
+                font-size: 60px;
+            }
+
+            .waitlist-title {
+                font-size: 36px;
+            }
+
+            .waitlist-subtitle {
+                font-size: 20px;
+                margin-bottom: 40px;
+            }
+
+            .email-input {
+                padding: 16px 20px;
+                font-size: 16px;
+            }
+
+            .submit-button {
+                padding: 16px 32px;
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .breed-title {
+                font-size: 50px;
+            }
+
+            .waitlist-title {
+                font-size: 28px;
+            }
+
+            .waitlist-subtitle {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to BREED</a>
+    
+    <div class="waitlist-container">
+        <h1 class="breed-title">BREED</h1>
+        <h2 class="waitlist-title">Join the Waitlist</h2>
+        <p class="waitlist-subtitle">Get notified when the algorithm launches publicly.</p>
+        
+        <form class="email-form" id="waitlistForm">
+            <input 
+                type="email" 
+                class="email-input" 
+                placeholder="Enter your email address" 
+                required 
+                id="emailInput"
+            >
+            <button type="submit" class="submit-button" id="submitButton">
+                Join Waitlist
+            </button>
+        </form>
+        
+        <div class="success-message" id="successMessage">
+            Thank you! You've been added to the BREED waitlist. We'll notify you when the algorithm launches publicly.
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('waitlistForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const emailInput = document.getElementById('emailInput');
+            const submitButton = document.getElementById('submitButton');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Simple email validation
+            const email = emailInput.value.trim();
+            if (!email || !email.includes('@')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Disable button and show loading state
+            submitButton.disabled = true;
+            submitButton.textContent = 'Adding to waitlist...';
+            
+            // Submit to Google Sheets
+            fetch('https://script.google.com/macros/s/AKfycbx-rAJGpf1x67PViQnqK7e0wdyX0yJc9RqcgJcC5fKgzLzeYygYi3LPKTaPFRPjg1LX0Q/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: email
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Hide form and show success message
+                    document.querySelector('.email-form').style.display = 'none';
+                    successMessage.classList.add('show');
+                } else {
+                    throw new Error(data.error || 'Failed to submit');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting your email. Please try again.');
+                
+                // Re-enable button
+                submitButton.disabled = false;
+                submitButton.textContent = 'Join Waitlist';
+            });
+        });
+    </script>
+</body>
+</html>
