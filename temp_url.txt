@@ -1,0 +1,3 @@
+Please type your new Google Apps Script URL here:
+
+URL: https://script.google.com/macros/s/AKfycbyfJ6yRwshUy3oUygX8DNQCUun1MbwKtMEmuqqkK1KvzR2gqOWV8AtPcEJiPVsYDj3B5A/exec

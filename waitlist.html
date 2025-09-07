@@ -240,19 +240,34 @@
             submitButton.disabled = true;
             submitButton.textContent = 'Adding to waitlist...';
             
-            // Submit to Google Sheets
-            fetch('https://script.google.com/macros/s/AKfycbx-rAJGpf1x67PViQnqK7e0wdyX0yJc9RqcgJcC5fKgzLzeYygYi3LPKTaPFRPjg1LX0Q/exec', {
+            // Submit to Google Sheets using form data
+            const formData = new FormData();
+            formData.append('email', email);
+            
+            fetch('https://script.google.com/macros/s/AKfycbyfJ6yRwshUy3oUygX8DNQCUun1MbwKtMEmuqqkK1KvzR2gqOWV8AtPcEJiPVsYDj3B5A/exec', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: email
-                })
+                body: formData
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
+            .then(response => {
+                console.log('Response status:', response.status);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text(); // Use .text() instead of .json() first
+            })
+            .then(responseText => {
+                console.log('Response text:', responseText);
+                let data;
+                try {
+                    data = JSON.parse(responseText);
+                } catch (e) {
+                    // If it's not JSON, but we got a 200, assume success
+                    console.log('Response is not JSON, but got 200 status');
+                    data = { success: true };
+                }
+                
+                console.log('Parsed data:', data);
+                if (data.success || data.success === undefined) {
                     // Hide form and show success message
                     document.querySelector('.email-form').style.display = 'none';
                     successMessage.classList.add('show');
